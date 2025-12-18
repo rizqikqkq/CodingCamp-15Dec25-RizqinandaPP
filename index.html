@@ -5,33 +5,151 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Website</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./js/script.js"></script>
+  <script visitorName()> </script>
+
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <nav class="bg-white border-b px-6 py-4 flex items-center justify-between">
-    <div class="flex items-center">
-      <div class="w-10 h-10 rounded-full flex items-center justify-center">
-        <img
-          src="https://avatars.githubusercontent.com/u/19871367?s=400&u=2dbbe0de312a2e6583845c005610f1e49ffdb464&v=4" />
-      </div>
+  <div id="nav-container"></div>
+  <section id="hero" class=" px-6 py-12 bg-white border-b relative overflow-hidden" style="min-height: 400px;">
+    <div class="relative z-10">
+      <h1 id="welcome-speech" class="hero-title text-3xl font-bold mb-2">Hi Im Rizqi, Welcome To the Website</h1>
+      <p class="text-gray-600 mb-32">Ini adalah website latihan RevoU</p>
     </div>
-    <div class="flex space-x-0">
-      <button class="px-8 py-2 border-2 border-gray-400 rounded-l-lg hover:bg-gray-50 text-sm">Home</button>
-      <button class="px-8 py-2 border-t-2 border-b-2 border-r-2 border-gray-400 hover:bg-gray-50 text-sm">Our
-        Profile</button>
-      <button
-        class="px-8 py-2 border-t-2 border-b-2 border-r-2 border-gray-400 hover:bg-gray-50 text-sm">Portfolio</button>
-      <button class="px-8 py-1 border-2 border-gray-400 rounded-r-lg hover:bg-gray-50 text-sm">Message Us</button>
-    </div>
-  </nav>
-  <section class="px-6 py-12 bg-white border-b relative overflow-hidden" style="min-height: 400px;">
-    <h1 class="text-3xl font-bold mb-2">Hi Im Rizqi, Welcome To the Website</h1>
-    <p class="text-gray-600 mb-32">Ini adalah website latihan RevoU</p>
-    <div class="absolute inset-0 flex items-center justify-center">
-      <img src="src/image/bg.jpg" alt="Hero Background" class="opacity-20 object-cover"
+    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1366 578" preserveAspectRatio="xMidYMid slice">
+      <circle cx="200" cy="150" r="180" fill="#e0e7ff" opacity="0.6"></circle>
+      <circle cx="1100" cy="450" r="200" fill="#dbeafe" opacity="0.5"></circle>
+      <circle cx="700" cy="300" r="150" fill="#f0fdfa" opacity="0.4"></circle>
+    </svg>
+
+    <div class="hero-subtitle absolute inset-1 flex items-center justify-center">
+      <img src="src/image/bg.jpg" alt="Hero Background" class="opacity-100 object-cover"
         style="width: 1366px; height: 578px;">
     </div>
-  </section>
 
+
+  </section>
+  <section id="portfolio" class=" px-6 py-12 border-b relative overflow-hidden" style="min-height: 400px;">
+    <h2 class="text-3xl font-bold mb-6">My Portfolio</h2>
+
+    <div class="m-8 overflow-x-auto pb-4">
+      <div class="flex gap-4" style="min-width: min-content;">
+        <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
+          <img src="src/image/repo1.jpg" alt="Repo 1" class="w-full h-40 object-cover rounded mb-2">
+          <h3 class="font-bold mb-2">Repo 1</h3>
+          <p class="text-gray-600 text-sm">A sample repository project</p>
+        </div>
+        <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
+          <img src="src/image/repo2.jpg" alt="Repo 2" class="w-full h-40 object-cover rounded mb-2">
+          <h3 class="font-bold mb-2">Repo 2</h3>
+          <p class="text-gray-600 text-sm">A sample repository project</p>
+        </div>
+        <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
+          <img src="src/image/repo3.jpg" alt="Repo 3" class="w-full h-40 object-cover rounded mb-2">
+          <h3 class="font-bold mb-2">Repo 3</h3>
+          <p class="text-gray-600 text-sm">A sample repository project</p>
+        </div>
+        <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
+          <img src="src/image/repo4.jpg" alt="Repo 4" class="w-full h-40 object-cover rounded mb-2">
+          <h3 class="font-bold mb-2">Repo 4</h3>
+          <p class="text-gray-600 text-sm">A sample repository project</p>
+        </div>
+        <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
+          <img src="src/image/repo5.jpg" alt="Repo 5" class="w-full h-40 object-cover rounded mb-2">
+          <h3 class="font-bold mb-2">Repo 5</h3>
+          <p class="text-gray-600 text-sm">A sample repository project</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
+      Show All Repositories
+    </button>
+  </section>
+  <section id="message" class="m-8 px-6 py-12 border-b relative overflow-hidden" style="min-height: 400px;">
+    <h2 class="text-2xl font-bold mb-8">Message Us</h2>
+    <div class="flex gap-8">
+      <!-- Form -->
+      <div class="flex-1">
+        <form id="messageForm">
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1">Nama</label>
+            <input type="text" id="nama" placeholder="Nama" class="w-full border border-gray-300 rounded px-3 py-2">
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1">Tanggal Lahir</label>
+            <input type="date" id="tanggal_lahir" class="w-full border border-gray-300 rounded px-3 py-2">
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1">Jenis Kelamin</label>
+            <div class="flex gap-4">
+              <label class="flex items-center">
+                <input type="radio" name="jenis_kelamin" value="Laki-Laki" class="mr-2">
+                Laki-Laki
+              </label>
+              <label class="flex items-center">
+                <input type="radio" name="jenis_kelamin" value="Perempuan" class="mr-2">
+                Perempuan
+              </label>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-1">Pesan</label>
+            <textarea id="pesan" placeholder="Pesan" rows="4"
+              class="w-full border border-gray-300 rounded px-3 py-2"></textarea>
+          </div>
+          <button type="submit" class="w-full bg-gray-200 hover:bg-gray-300 py-2 rounded">Submit</button>
+        </form>
+      </div>
+
+      <!-- Display Info -->
+      <div class="flex-1">
+        <div id="chatContainer" class="border border-gray-300 rounded p-6 h-full overflow-y-auto"
+          style="max-height: 400px;">
+        </div>
+      </div>
+
+      <script>
+        document.getElementById('messageForm').addEventListener('submit', function (e) {
+          e.preventDefault();
+
+          const nama = document.getElementById('nama').value.trim();
+          const tanggal_lahir = document.getElementById('tanggal_lahir').value;
+          const jenis_kelamin = document.querySelector('input[name="jenis_kelamin"]:checked');
+          const pesan = document.getElementById('pesan').value.trim();
+
+          if (!nama || !tanggal_lahir || !jenis_kelamin || !pesan) {
+            alert('Semua field harus diisi');
+            return;
+          }
+
+          const message = {
+            nama,
+            tanggal_lahir,
+            jenis_kelamin: jenis_kelamin.value,
+            pesan,
+            timestamp: new Date().toLocaleString('id-ID', {
+              timeZone: 'Asia/Jakarta'
+            })
+          };
+
+          let messages = JSON.parse(localStorage.getItem('messages')) || [];
+          messages.push(message);
+          localStorage.setItem('messages', JSON.stringify(messages));
+
+          this.reset();
+          displayMessages();
+        });
+
+        displayMessages();
+      </script>
+    </div>
+
+
+  </section>
+  <div id="footer-container"></div>
 </body>
