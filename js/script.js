@@ -5,7 +5,25 @@ function visitorName(){
       window.location.href = 'welcome.html';
     }
 }
-
+function clearVisitorName() {
+    localStorage.removeItem('visitorName');
+    window.location.href = 'welcome.html';
+}
+function createImagePreview() {
+    return `
+      <div id="imageModal" class="hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50" onclick="closeImagePreview()">
+        <div class="relative max-w-4xl max-h-96" onclick="event.stopPropagation()">
+          <img id="previewImage" src="" alt="Preview" class="w-full h-auto cursor-zoom-in" onclick="toggleZoom(event)">
+          <button onclick="closeImagePreview()" class="absolute top-2 right-2 bg-white rounded-full p-2 hover:bg-gray-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+          <p class="text-white text-center mt-2 text-sm">Click image to zoom</p>
+        </div>
+      </div>
+      `;
+}
 function createNavigation() {
     return `
         <nav id="navbar" class="nav-container border-b px-6 py-4 flex items-center justify-between fixed top-0 left-0 right-0 z-50 transition-transform duration-300">
@@ -195,6 +213,11 @@ document.addEventListener('DOMContentLoaded', function() {
         navContainer.innerHTML = createNavigation();
     }
     
+    const portfolio = document.getElementById('img_preview');
+    if (portfolio) {
+        portfolio.innerHTML = createImagePreview();
+    }
+    
     const footerContainer = document.getElementById('footer-container');
     if (footerContainer) {
         footerContainer.innerHTML = createFooter();
@@ -229,4 +252,86 @@ function displayMessages() {
         `;
         container.appendChild(div);
     });
+}
+
+let isZoomed = false;
+        
+function openImagePreview(src) {
+    const modal = document.getElementById('imageModal');
+    const previewImage = document.getElementById('previewImage');
+    
+    previewImage.src = src;
+    modal.classList.remove('hidden');
+    
+    // Trigger animation
+    requestAnimationFrame(() => {
+        modal.classList.add('opacity-0', 'scale-95');
+        requestAnimationFrame(() => {
+            modal.classList.remove('opacity-0', 'scale-95');
+        });
+    });
+    
+    isZoomed = false;
+    previewImage.style.transform = 'scale(1)';
+}
+
+function closeImagePreview() {
+  document.getElementById('imageModal').classList.add('hidden');
+  isZoomed = false;
+  document.getElementById('previewImage').style.transform = 'scale(1)';
+}
+
+function toggleZoom(event) {
+    const img = event.target;
+    const modal = document.getElementById('imageModal');
+    
+    isZoomed = !isZoomed;
+    
+    if (isZoomed) {
+        img.style.cursor = 'grab';
+        img.style.transformOrigin = 'center center';
+        img.style.transform = 'scale(1.5)';
+        img.style.transition = 'transform 0.3s ease';
+        
+        // Add scroll zoom listener
+        modal.addEventListener('wheel', handleZoomScroll, { passive: false });
+        
+        // Add mouse move listener for pan
+        img.addEventListener('mousemove', handleImagePan);
+    } else {
+        img.style.cursor = 'zoom-in';
+        img.style.transform = 'scale(1) translate(0, 0)';
+        img.style.transition = 'transform 0.3s ease';
+        
+        // Remove listeners
+        modal.removeEventListener('wheel', handleZoomScroll);
+        img.removeEventListener('mousemove', handleImagePan);
+    }
+}
+
+let currentZoom = 1.5;
+
+function handleZoomScroll(event) {
+    if (!isZoomed) return;
+    
+    event.preventDefault();
+    const img = document.getElementById('previewImage');
+    const zoomStep = 0.2;
+    
+    currentZoom += event.deltaY > 0 ? -zoomStep : zoomStep;
+    currentZoom = Math.max(1, Math.min(currentZoom, 3));
+    
+    img.style.transform = `scale(${currentZoom})`;
+}
+
+function handleImagePan(event) {
+    if (!isZoomed || currentZoom <= 1) return;
+    
+    const img = event.target;
+    const rect = img.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width * 100;
+    const y = (event.clientY - rect.top) / rect.height * 100;
+    
+    img.style.transformOrigin = `${x}% ${y}%`;
+    img.style.transform = `scale(${currentZoom})`;
 }
