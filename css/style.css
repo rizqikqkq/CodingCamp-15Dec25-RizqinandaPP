@@ -178,31 +178,26 @@ body {
 }
 
 .welcome-card {
-  background-color: var(--dark-charcoal);
+  background-color: var(--primary-pink);
   border: 2px solid var(--text-muted);
 }
-
 .welcome-title {
-  color: var(--primary-pink);
+  color: var(--text-muted);
 }
-
 .welcome-subtitle {
   color: var(--text-muted);
 }
-
 #visitorName {
-  background-color: var(--accent-black);
+  background-color: var(--bg-gray);
   border-color: var(--text-muted);
-  color: var(--white);
+  color: var(--accent-black);
   transition: all 0.3s ease;
 }
-
 #visitorName:focus {
   border-color: var(--light-purple);
   outline: none;
   box-shadow: 0 0 0 3px rgba(197, 216, 157, 0.2);
 }
-
 #visitorName::placeholder {
   color: var(--text-muted);
   opacity: 0.6;
@@ -214,7 +209,6 @@ body {
   font-weight: 600;
   transition: all 0.3s ease;
 }
-
 .btn-primary:hover {
   background-color: var(--primary-pink);
   color: var(--text-hover);
@@ -222,24 +216,18 @@ body {
   transform: scale(1.05);
   box-shadow: 0 10px 25px rgba(197, 216, 157, 0.3);
 }
-
 .btn-primary:active {
   transform: scale(0.98);
 }
-
 
 .skip-btn {
   color: var(--text-muted);
   transition: color 0.3s ease;
 }
-
 .skip-btn:hover {
   color: var(--text-hover);
 }
 
-.footer-text {
-  color: var(--text-muted);
-}
 
 .logo-container {
   background-color: var(--light-purple);
@@ -250,6 +238,9 @@ body {
     background-color: var(--nav-color);
     color: var(--white);
     font-weight: 500;
+}
+.footer-text {
+  color: var(--text-muted);
 }
 
 /* Profile animation */
