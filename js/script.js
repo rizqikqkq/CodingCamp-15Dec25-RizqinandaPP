@@ -2,6 +2,11 @@
 let lastScrollTop = 0;
 let scrollTimer = null;
 let isZoomed = false;
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slide");
+
+
+
 
 function visitorName(){
     const visitorName = localStorage.getItem('visitorName');
@@ -43,7 +48,7 @@ function createNavigation() {
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-0">
                 <button onclick="handleNavClick('hero')" class="nav-btn px-8 py-1 border-2 rounded-l-lg text-sm">Home</button>
-                <button onclick="navigateTo('profile.html')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 text-sm">My Profile</button>
+                <button onclick="navigateTo('profile.html')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 text-sm">Our Profile</button>
                 <button onclick="handleNavClick('portfolio')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 text-sm">Portfolio</button>
                 <button onclick="handleNavClick('message')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 rounded-r-lg text-sm">Message Us</button>
             </div>
@@ -84,7 +89,7 @@ function createNavigation() {
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                         </svg>
-                        My Profile
+                        Our Profile
                     </button>
                     <button onclick="handleNavClick('portfolio'); toggleMobileMenu()" class="mobile-menu-btn w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 flex items-center">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -102,7 +107,7 @@ function createNavigation() {
                 
                 <!-- Sidebar Footer -->
                 <div class="p-4 border-t text-center text-sm text-gray-600">
-                    © Rizqinanda 2025
+                    © Rizqinanda 2025 
                 </div>
             </div>
         </div>
@@ -193,6 +198,9 @@ function createFooter() {
                         </svg>
                     </a>
                 </div>
+                <span class="text-xs text-gray-500">
+                    Disclaimer : This Website is just for Education Purpose Only
+                </span>
                 <div class="text-sm">
                     © Rizqinanda 2025
                 </div>
@@ -444,8 +452,6 @@ function initWelcomePage() {
     }
 }
 
-
-
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname;
     if (currentPage.includes('welcome.html')) {
@@ -480,6 +486,30 @@ document.addEventListener('DOMContentLoaded', function() {
     if (heroTitle && visitorName) {
         heroTitle.textContent = `Hello ${visitorName},`;
     }
+
+    const slides = document.querySelectorAll(".slide");
+
+  // Exit if slider doesn't exist on this page
+  if (!slides.length) return;
+
+  let currentSlide = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("hidden", i !== index);
+    });
+  }
+
+  // Expose globally for inline onclick
+  window.nextSlide = function () {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  };
+
+  window.prevSlide = function () {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+  };
 
     initMessageForm();
     
