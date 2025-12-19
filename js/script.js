@@ -1,4 +1,8 @@
 
+let lastScrollTop = 0;
+let scrollTimer = null;
+let isZoomed = false;
+
 function visitorName(){
     const visitorName = localStorage.getItem('visitorName');
     if (!visitorName) {
@@ -24,6 +28,8 @@ function createImagePreview() {
       </div>
       `;
 }
+
+
 function createNavigation() {
     return `
         <nav id="navbar" class="nav-container border-b px-6 py-4 flex items-center justify-between fixed top-0 left-0 right-0 z-50 transition-transform duration-300">
@@ -35,10 +41,10 @@ function createNavigation() {
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-0">
-                <button onclick="scrollToSection('hero')" class="nav-btn px-8 py-1 border-2 rounded-l-lg hover:bg-opacity-20 hover:bg-white text-sm">Home</button>
-                <button onclick="navigateTo('profile.html')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 hover:bg-opacity-20 hover:bg-white text-sm">Our Profile</button>
-                <button onclick="scrollToSection('portfolio')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 hover:bg-opacity-20 hover:bg-white text-sm">Portfolio</button>
-                <button onclick="scrollToSection('message')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 rounded-r-lg hover:bg-opacity-20 hover:bg-white text-sm">Message Us</button>
+                <button onclick="handleNavClick('hero')" class="nav-btn px-8 py-1 border-2 rounded-l-lg text-sm">Home</button>
+                <button onclick="navigateTo('profile.html')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 text-sm">Our Profile</button>
+                <button onclick="handleNavClick('portfolio')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 text-sm">Portfolio</button>
+                <button onclick="handleNavClick('message')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 rounded-r-lg text-sm">Message Us</button>
             </div>
             
             <!-- Mobile Hamburger Button -->
@@ -67,25 +73,25 @@ function createNavigation() {
                 
                 <!-- Sidebar Menu Items -->
                 <div class="flex flex-col p-4 space-y-2 flex-1">
-                    <button onclick="scrollToSection('hero'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 flex items-center">
+                    <button onclick="handleNavClick('hero'); toggleMobileMenu()" class="mobile-menu-btn w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 flex items-center">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
                         </svg>
                         Home
                     </button>
-                    <button onclick="navigateTo('profile.html')" class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 flex items-center">
+                    <button onclick="navigateTo('profile.html'); toggleMobileMenu()" class="mobile-menu-btn w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 flex items-center">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                         </svg>
                         Our Profile
                     </button>
-                    <button onclick="scrollToSection('portfolio'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 flex items-center">
+                    <button onclick="handleNavClick('portfolio'); toggleMobileMenu()" class="mobile-menu-btn w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 flex items-center">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                         </svg>
                         Portfolio
                     </button>
-                    <button onclick="scrollToSection('message'); toggleMobileMenu()" class="w-full text-left px-4 py-3 rounded-lg hover:bg-gray-100 transition-colors duration-200 flex items-center">
+                    <button onclick="handleNavClick('message'); toggleMobileMenu()" class="mobile-menu-btn w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 flex items-center">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
@@ -101,6 +107,33 @@ function createNavigation() {
         </div>
     `;
 }
+function isIndexPage() {
+    const currentPage = window.location.pathname;
+    return currentPage.endsWith('index.html') || currentPage.endsWith('/') || currentPage === '';
+}
+function handleNavClick(sectionId) {
+    if (isIndexPage()) {
+        scrollToSection(sectionId);
+    } else {
+        window.location.href = `index.html#${sectionId}`;
+    }
+}
+
+function setActiveNav() {
+    const currentPage = window.location.pathname;
+    const navButtons = document.querySelectorAll('.nav-btn');
+    
+    navButtons.forEach(button => {
+        button.classList.remove('active');
+    });
+    
+    if (currentPage.includes('profile.html')) {
+        navButtons[1].classList.add('active');
+    } else {
+        navButtons[0].classList.add('active');
+    }
+}
+
 
 function createFooter() {
     return `
@@ -177,8 +210,6 @@ function setActiveNavOnScroll() {
     });
 }
 
-let lastScrollTop = 0;
-let scrollTimer = null;
 
 function handleNavbarScroll() {
     const navbar = document.getElementById('navbar');
@@ -190,7 +221,6 @@ function handleNavbarScroll() {
         return;
     }
     
-    // Clear any existing timer
     if (scrollTimer) {
         clearTimeout(scrollTimer);
     }
@@ -208,6 +238,13 @@ function handleNavbarScroll() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    const hash = window.location.hash.substring(1);
+    if (hash && isIndexPage()) {
+        setTimeout(() => {
+            scrollToSection(hash);
+        }, 100);
+    }
+
     const navContainer = document.getElementById('nav-container');
     if (navContainer) {
         navContainer.innerHTML = createNavigation();
@@ -242,7 +279,7 @@ function displayMessages() {
     
     messages.forEach(msg => {
         const div = document.createElement('div');
-        div.className = 'bg-blue-100 rounded p-3 mb-3 text-sm';
+        div.className = 'bg-green-200 rounded p-3 mb-3 text-sm';
         div.innerHTML = `
             <p><strong>Nama:</strong> ${msg.nama}</p>
             <p><strong>Tanggal Lahir:</strong> ${msg.tanggal_lahir}</p>
@@ -254,7 +291,6 @@ function displayMessages() {
     });
 }
 
-let isZoomed = false;
         
 function openImagePreview(src) {
     const modal = document.getElementById('imageModal');
@@ -263,22 +299,40 @@ function openImagePreview(src) {
     previewImage.src = src;
     modal.classList.remove('hidden');
     
-    // Trigger animation
     requestAnimationFrame(() => {
-        modal.classList.add('opacity-0', 'scale-95');
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        previewImage.style.transform = 'scale(0.8) translateY(20px)';
+        previewImage.style.opacity = '0';
+        
         requestAnimationFrame(() => {
-            modal.classList.remove('opacity-0', 'scale-95');
+            modal.style.transition = 'opacity 0.4s ease-out';
+            previewImage.style.transition = 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            previewImage.style.transform = 'scale(1) translateY(0)';
+            previewImage.style.opacity = '1';
         });
     });
     
     isZoomed = false;
-    previewImage.style.transform = 'scale(1)';
 }
 
 function closeImagePreview() {
-  document.getElementById('imageModal').classList.add('hidden');
-  isZoomed = false;
-  document.getElementById('previewImage').style.transform = 'scale(1)';
+    const modal = document.getElementById('imageModal');
+    const previewImage = document.getElementById('previewImage');
+    
+    previewImage.style.transition = 'transform 0.4s ease';
+    previewImage.style.transform = 'scale(0.8)';
+    
+    modal.classList.remove('opacity-100');
+    modal.classList.add('opacity-0');
+
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        isZoomed = false;
+        previewImage.style.transform = 'scale(1)';
+        modal.classList.remove('opacity-0'); 
+    }, 400); 
 }
 
 function toggleZoom(event) {
@@ -293,17 +347,14 @@ function toggleZoom(event) {
         img.style.transform = 'scale(1.5)';
         img.style.transition = 'transform 0.3s ease';
         
-        // Add scroll zoom listener
         modal.addEventListener('wheel', handleZoomScroll, { passive: false });
         
-        // Add mouse move listener for pan
         img.addEventListener('mousemove', handleImagePan);
     } else {
         img.style.cursor = 'zoom-in';
         img.style.transform = 'scale(1) translate(0, 0)';
         img.style.transition = 'transform 0.3s ease';
         
-        // Remove listeners
         modal.removeEventListener('wheel', handleZoomScroll);
         img.removeEventListener('mousemove', handleImagePan);
     }
