@@ -17,93 +17,148 @@
 
 <body>
   <div id="nav-container"></div>
-  <section class="mx-6 mt-6 flex items-center justify-center from-blue-50 to-indigo-100 px-6">
+  <section class="mx-6 flex items-center justify-center
+         min-h-[calc(100vh-155px)]">
     <div class="relative w-full max-w-5xl rounded-3xl shadow-xl overflow-hidden
-         bg-[url('src/image/hero_banner.jpg')] bg-cover bg-center bg-fixed
-         grid grid-cols-1 md:grid-cols-2 gap-10 items-center p-10">
-      <div class="absolute inset-0 bg-black/30"></div>
+           bg-[url('src/image/hero_banner.jpg')] bg-cover bg-center bg-fixed">
+      <div id="heroSlider" class="relative bg-[url('src/image/hero_banner.jpg')] bg-cover bg-center bg-fixed">
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="slide active grid grid-cols-1 md:grid-cols-2 gap-10 items-center p-10 relative z-10">
+          <div class="flex justify-center">
+            <div class="relative w-56 h-56 animate-maskRotate">
+              <img src="src/image/icon.png" alt="Profile" class="w-full h-full object-cover animate-counterRotate" />
+            </div>
+          </div>
+          <div class="nav-container text-white rounded-2xl p-8 shadow-lg backdrop-blur-md bg-black/70">
+            <h1 class="text-3xl font-bold mb-4">About the Company</h1>
+            <p class="text-indigo-100 leading-relaxed text-xs">
+              We are an IT consulting company specializing in warehouse and logistics solutions. Our focus is to help
+              businesses optimize operations through reliable, efficient, and well-structured technology systems.
 
-      <div class="relative z-10 flex justify-center">
-        <div class="relative w-56 h-56 animate-maskRotate">
-          <img src="src/image/icon.png" alt="Profile" class="w-full h-full object-cover animate-counterRotate" />
+              With experience in logistics workflows and operational systems, we design and implement solutions that
+              improve
+              visibility, accuracy, and performance across supply chains. We believe technology should not only work
+              well,
+              but also support business growth in a practical and sustainable way.
+
+              Our commitment is to deliver systems that are safe, reliable, and always on time, ensuring our clients can
+              operate with confidence and efficiency..
+            </p>
+          </div>
+        </div>
+        <div class="slide hidden grid grid-cols-1 md:grid-cols-2 gap-10 items-center p-10 relative z-10">
+          <div class="flex justify-center">
+            <div class="grid grid-cols-2 gap-4">
+              <img src="src/image/prt1.png" class="w-20 h-20 object-contain" />
+              <img src="src/image/prt2.png" class="w-20 h-20 object-contain" />
+              <img src="src/image/prt3.png" class="w-20 h-20 object-contain" />
+              <img src="src/image/prt4.png" class="w-20 h-20 object-contain" />
+            </div>
+          </div>
+          <div class="nav-container text-white rounded-2xl p-8 shadow-lg backdrop-blur-md bg-black/70">
+            <h1 class="text-3xl font-bold mb-4">Our Clients</h1>
+            <p class="text-indigo-100 leading-relaxed">
+              We have worked with trusted partners across retail, manufacturing,
+              and logistics industries, supporting mission-critical operations
+              through reliable IT solutions.
+            </p>
+          </div>
+        </div>
+        <div class="slide hidden grid grid-cols-1 md:grid-cols-2 gap-10 items-center p-10 relative z-10">
+          <div class="flex justify-center">
+            <div class="grid grid-cols-2 gap-6">
+              <div class="text-center">
+                <p class="text-4xl font-bold text-white">2019</p>
+                <p class="text-xs text-indigo-200">First Deployment</p>
+              </div>
+              <div class="text-center">
+                <p class="text-4xl font-bold text-white">2021</p>
+                <p class="text-xs text-indigo-200">Mobile Solutions</p>
+              </div>
+              <div class="text-center">
+                <p class="text-4xl font-bold text-white">2023</p>
+                <p class="text-xs text-indigo-200">Enterprise Clients</p>
+              </div>
+              <div class="text-center">
+                <p class="text-4xl font-bold text-white">2024</p>
+                <p class="text-xs text-indigo-200">Long-term Partnership</p>
+              </div>
+            </div>
+          </div>
+          <div class="text-white rounded-2xl p-8 shadow-lg backdrop-blur-md bg-black/60">
+            <h1 class="text-3xl font-bold mb-4">
+              Our Achievement
+            </h1>
+            <ul class="space-y-4 text-indigo-100 leading-relaxed text-sm">
+              <li>
+                <span class="font-semibold text-white">2019</span> — Successfully delivered
+                warehouse management systems for mid-scale logistics operations.
+              </li>
+              <li>
+                <span class="font-semibold text-white">2021</span> — Launched Android-based
+                warehouse applications for inventory and packing processes.
+              </li>
+              <li>
+                <span class="font-semibold text-white">2023</span> — Expanded services to
+                enterprise-level retail and manufacturing clients.
+              </li>
+              <li>
+                <span class="font-semibold text-white">2024</span> — Maintained long-term
+                partnerships supporting mission-critical logistics systems.
+              </li>
+            </ul>
+          </div>
+
+        </div>
+        <div class="slide hidden grid grid-cols-1 md:grid-cols-2 gap-10 items-center p-10 relative z-10">
+          <div class="flex justify-center">
+            <div class="relative w-full max-w-sm h-56 rounded-2xl overflow-hidden shadow-lg bg-gray-200">
+              <div class="absolute inset-0 bg-[url('src/image/map_mockup.jpg')] bg-cover bg-center"></div>
+              <div class="absolute inset-0 bg-black/20"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="relative">
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-4xl drop-shadow-lg">📍</span>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="absolute bottom-3 left-3 bg-black/60 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full">
+                HQ · Jakarta
+              </div>
+            </div>
+          </div>
+          <div class="text-white rounded-2xl p-8 shadow-lg backdrop-blur-md bg-black/60">
+            <h1 class="text-3xl font-bold mb-4">
+              Reach Us
+            </h1>
+            <p class="text-indigo-100 leading-relaxed mb-6">
+              Our headquarter is located in Jakarta. Reach out to us for inquiries,
+              collaborations, or project discussions. We are ready to assist you.
+            </p>
+            <button onclick="handleNavClick('message')" class="inline-flex items-center gap-2 px-6 py-3 rounded-full
+              bg-indigo-600 hover:bg-indigo-700
+              text-white font-semibold
+              transition-all duration-200
+              hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-400">
+              Message Us
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="relative z-10 nav-container text-white rounded-2xl p-8 shadow-lg backdrop-blur-md bg-black">
-        <h1 class="text-3xl font-bold mb-4">
-          Welcome to My Profile
-        </h1>
-        <p class="text-indigo-100 leading-relaxed">
-          Hello, My name is Rizqinanda I'm a Fullstack Software Developer with over six years of experience in planning,
-          developing,
-          and maintaining software for Desktop and Android platforms. In addition to this, I manage
-          devOps for my company.
-        </p>
-      </div>
-    </div>
-  </section>
-  <section class="mx-6 flex items-center justify-center from-blue-5 px-6">
-    <div class="w-full max-w-5xl bg-white rounded-3xl shadow-xl p-10 mt-12">
-      <h2 class="text-2xl font-bold mb-10 text-gray-900">
-        My Journey
-      </h2>
-      <div class="relative space-y-12">
-        <div class="absolute left-2 top-0 h-full w-px bg-green-200"></div>
-        <div class="relative pl-12">
-          <span class="absolute left-0 top-2 w-4 h-4 rounded-full bg-green-600"></span>
-
-          <h3 class="font-semibold text-lg text-gray-900">
-            PT. Logistic in East Jakarta
-          </h3>
-          <p class="text-sm text-gray-500 mb-3">
-            2018 – 2025
-          </p>
-
-          <ul class="space-y-1 text-gray-700">
-            <li>Desktop C# Junior Programmer <span class="text-gray-400">(2018 – 2019)</span></li>
-            <li>Mobile Android Native Junior Programmer <span class="text-gray-400">(2019 – 2021)</span></li>
-            <li>Mobile Android Native Developer <span class="text-gray-400">(2021 – 2022)</span></li>
-            <li>Fullstack Desktop & Mobile Developer <span class="text-gray-400">(2023 – 2025)</span></li>
-            <li>Teamlead Developer Mobile & Web <span class="text-gray-400">(2024 – 2025)</span></li>
-          </ul>
-        </div>
-        <div class="relative pl-12">
-          <span class="absolute left-0 top-2 w-4 h-4 rounded-full bg-green-600"></span>
-          <h3 class="font-semibold text-lg text-gray-900">
-            Universitas PGRI
-          </h3>
-          <p class="text-sm text-gray-500 mb-3">
-            2015 – 2019
-          </p>
-          <p class="text-gray-700">
-            Bachelor Degree <span class="text-gray-400">(2019)</span>
-          </p>
-        </div>
+      <div class="absolute bottom-6 right-6 flex gap-3 z-20">
+        <button onclick="prevSlide()"
+          class="px-4 py-2 rounded-full bg-white/80 hover:bg-white text-gray-800 font-semibold">
+          Prev
+        </button>
+        <button onclick="nextSlide()" class="px-4 py-2 rounded-full btn-primary text-primary font-semibold">
+          Next
+        </button>
       </div>
     </div>
   </section>
 
-  <section class="mx-6 flex items-center justify-center from-blue-5 px-6">
-    <div class="w-full max-w-5xl mx-auto mt-12">
-      <div class="bg-black rounded-3xl border border-gray-200 shadow-sm p-10">
-        <h2 class="text-xl font-semibold mb-4 text-primary">
-          Intermezo
-        </h2>
-        <p class="text-white leading-relaxed">
-          The reason I joined this class is to build a strong foundation in web programming.
-          <br /><br />
-          In my previous role, I often led web development teams, even though I wasn’t deeply familiar with web technologies myself. 
-          To keep up with product demands from upper management, I relied heavily on AI tools to help deliver results. 
-          While this approach worked to a certain extent, it wasn’t enough.
-          <br /><br />
-          Creating products without fully understanding the underlying technology felt unreliable and unsatisfying. 
-          Because of that, I decided to join this class to properly learn the fundamentals of web programming, 
-          and strengthen my technical confidence.
-        </p>
-      </div>
-    </div>
-
-  </section>
   <br />
   <div id="footer-container"></div>
 </body>

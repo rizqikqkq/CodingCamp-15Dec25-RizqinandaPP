@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Website</title>
 
-  
+
   <link rel="stylesheet" href="css/style.css">
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -20,28 +20,104 @@
   <section id="hero" class=" px-6 py-12 relative overflow-hidden" style="min-height: 578px;">
     <div class="relative z-10 bg-black bg-opacity-40 rounded-lg p-6 max-w-md">
       <div class="flex items-center gap-3">
-      <h1 id="welcome-speech" class="text-primary hero-title text-3xl font-bold mb-2">Hi Im Rizqi, Welcome To the Website</h1>
-      <button onclick="clearVisitorName()" class="text-primary hover:text-gray-300">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-        </path>
-        </svg>
-      </button>
+        <h1 id="welcome-speech" class="text-primary hero-title text-3x1 font-bold mb-2">Hi Im Rizqi, Welcome To the
+          Website</h1>
+        <button onclick="clearVisitorName()" class="text-primary hover:text-gray-300">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+            </path>
+          </svg>
+        </button>
       </div>
-      <p class="hero-subtitle">Ini adalah website latihan RevoU</p>
+      <h1 class="text-primary hero-title text-3xl font-bold mb-2">Welcome To our Website</h1>
+      <p class="hero-subtitle">We are an IT consulting company specializing in warehouse and logistics solutions. We
+        focus on delivering reliable, secure, and efficient systems that support smooth operations and on-time
+        performance. Our goal is to help businesses improve accuracy, visibility, and productivity through practical
+        technology tailored to real operational needs.</p>
     </div>
-
-    <div class="hero-subtitle absolute inset-0 flex items-center justify-center overflow-hidden " style="transform: translateY(-4px);">
-      <img src="src/image/hero_banner.jpg" alt="Hero Background" class=" rounded-2xl shadow-2xl opacity-90 object-cover rounded-2xl"
-      style="width: 1366px; height: 578px;">
+    <div class="hero-subtitle absolute inset-0 flex items-center justify-center overflow-hidden "
+      style="transform: translateY(-4px);">
+      <img src="src/image/hero_banner.jpg" alt="Hero Background"
+        class=" rounded-2xl shadow-2xl opacity-90 object-cover rounded-2xl" style="width: 1366px; height: 578px;">
     </div>
-
-
   </section>
+  <section id="vision-mission" class="m-8 px-6 py-12 relative overflow-hidden">
+    <h2 class="text-3xl text-primary font-bold mb-6">
+      Vision & Mission
+    </h2>
+    <div class="bg-white rounded-lg p-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-gray-100 rounded-lg p-6">
+          <h3 class="font-bold text-lg mb-3 text-gray-900">
+            Our Vision
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            To become a trusted IT consulting partner in warehouse and logistics
+            solutions, delivering reliable technology that drives efficiency,
+            accuracy, and long-term business success.
+          </p>
+        </div>
+        <div class="bg-gray-100 rounded-lg p-6">
+          <h3 class="font-bold text-lg mb-3 text-gray-900">
+            Our Mission
+          </h3>
+          <ul class="text-gray-600 text-sm leading-relaxed space-y-2 list-disc list-inside">
+            <li>Deliver reliable and secure IT solutions</li>
+            <li>Support warehouse and logistics operations efficiently</li>
+            <li>Maintain on-time and accurate system performance</li>
+            <li>Build long-term partnerships with clients</li>
+            <li>Continuously adapt to logistics technology growth</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="partners" class="m-8 px-6 py-12 relative overflow-hidden">
+    <h2 class="text-3xl text-primary font-bold mb-6">
+      Our Partners
+    </h2>
+    <div class="bg-white rounded-lg p-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 place-items-center">
+        <div class="text-center">
+          <div class="nav-btn w-24 h-24 rounded-full bg-primary flex items-center justify-center mb-3">
+            <img src="src/image/prt1.png" alt="Bukalapak" class="w-10 h-10 object-contain">
+          </div>
+          <span class="text-sm font-semibold text-gray-800">
+            Bukalapak
+          </span>
+        </div>
+        <div class="text-center">
+          <div class="nav-btn w-24 h-24 rounded-full bg-primary flex items-center justify-center mb-3">
+            <img src="src/image/prt2.png" alt="Heinz" class="w-10 h-10 object-contain">
+          </div>
+          <span class="text-sm font-semibold text-gray-800">
+            Heinz
+          </span>
+        </div>
+        <div class="text-center">
+          <div class="nav-btn w-24 h-24 rounded-full bg-primary flex items-center justify-center mb-3">
+            <img src="src/image/prt3.png" alt="Unilever" class="w-10 h-10 object-contain">
+          </div>
+          <span class="text-sm font-semibold text-gray-800">
+            Unilever
+          </span>
+        </div>
+        <div class="text-center">
+          <div class="nav-btn w-24 h-24 rounded-full bg-primary flex items-center justify-center mb-3">
+            <img src="src/image/prt4.png" alt="Japfa" class="w-10 h-10 object-contain">
+          </div>
+          <span class="text-sm font-semibold text-gray-800">
+            Japfa
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div id="img_preview"></div>
   <section id="portfolio" class="m-8 px-6 py-12 relative overflow-hidden" style="min-height: 400px;">
-    <h2 class="text-3xl text-primary font-bold mb-6">My Portfolio</h2>
+    <h2 class="text-3xl text-primary font-bold mb-6">Our Product Portfolio</h2>
 
     <div class="bg-white rounded-lg p-6">
       <div class="overflow-x-auto pb-4">
@@ -92,7 +168,6 @@
   <section id="message" class="m-8 px-6 py-12 relative overflow-hidden" style="min-height: 400px;">
     <h2 class="text-2xl font-bold mb-8 text-primary">Message Us</h2>
     <div class="flex gap-8">
-      <!-- Form -->
       <div class="flex-1">
         <form id="messageForm">
           <div class="mb-4">
@@ -122,7 +197,8 @@
             <textarea id="pesan" placeholder="Pesan" rows="4" class="w-full border border-gray-300 rounded px-3 py-2"
               required></textarea>
           </div>
-          <button type="submit" class="btn-primary w-full py-4 rounded-xl bg-gray-200 hover:bg-gray-300 py-2">Submit</button>
+          <button type="submit"
+            class="btn-primary w-full py-4 rounded-xl bg-gray-200 hover:bg-gray-300 py-2">Submit</button>
         </form>
       </div>
 
