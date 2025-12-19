@@ -15,78 +15,96 @@
 
 <body>
   <div id="nav-container"></div>
-  <section id="hero" class=" px-6 py-12 bg-white border-b relative overflow-hidden" style="min-height: 400px;">
+  <section id="hero" class=" px-6 py-12 relative overflow-hidden" style="min-height: 578px;">
     <div class="relative z-10">
-      <h1 id="welcome-speech" class="hero-title text-3xl font-bold mb-2">Hi Im Rizqi, Welcome To the Website</h1>
-      <p class="text-gray-600 mb-32">Ini adalah website latihan RevoU</p>
+      <div class="flex items-center gap-3">
+        <h1 id="welcome-speech" class="hero-title text-3xl font-bold mb-2">Hi Im Rizqi, Welcome To the Website</h1>
+        <button onclick="clearVisitorName()" class="text-white hover:text-gray-300">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+            </path>
+          </svg>
+        </button>
+      </div>
+      <p class="text-white mb-32">Ini adalah website latihan RevoU</p>
     </div>
-    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1366 578" preserveAspectRatio="xMidYMid slice">
-      <circle cx="200" cy="150" r="180" fill="#e0e7ff" opacity="0.6"></circle>
-      <circle cx="1100" cy="450" r="200" fill="#dbeafe" opacity="0.5"></circle>
-      <circle cx="700" cy="300" r="150" fill="#f0fdfa" opacity="0.4"></circle>
-    </svg>
 
-    <div class="hero-subtitle absolute inset-1 flex items-center justify-center">
-      <img src="src/image/bg.jpg" alt="Hero Background" class="opacity-100 object-cover"
+    <div class="hero-subtitle absolute inset-0 flex items-center justify-center">
+      <img src="src/image/bg.jpg" alt="Hero Background" class="opacity-90 object-cover"
         style="width: 1366px; height: 578px;">
     </div>
 
 
   </section>
-  <section id="portfolio" class=" px-6 py-12 border-b relative overflow-hidden" style="min-height: 400px;">
-    <h2 class="text-3xl font-bold mb-6">My Portfolio</h2>
+  <div id="img_preview"></div>
+  <section id="portfolio" class=" px-6 py-12 relative overflow-hidden" style="min-height: 400px;">
+    <h2 class="text-3xl text-white font-bold mb-6">My Portfolio</h2>
 
-    <div class="m-8 overflow-x-auto pb-4">
-      <div class="flex gap-4" style="min-width: min-content;">
-        <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
-          <img src="src/image/repo1.jpg" alt="Repo 1" class="w-full h-40 object-cover rounded mb-2">
-          <h3 class="font-bold mb-2">Repo 1</h3>
-          <p class="text-gray-600 text-sm">A sample repository project</p>
-        </div>
-        <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
-          <img src="src/image/repo2.jpg" alt="Repo 2" class="w-full h-40 object-cover rounded mb-2">
-          <h3 class="font-bold mb-2">Repo 2</h3>
-          <p class="text-gray-600 text-sm">A sample repository project</p>
-        </div>
-        <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
-          <img src="src/image/repo3.jpg" alt="Repo 3" class="w-full h-40 object-cover rounded mb-2">
-          <h3 class="font-bold mb-2">Repo 3</h3>
-          <p class="text-gray-600 text-sm">A sample repository project</p>
-        </div>
-        <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
-          <img src="src/image/repo4.jpg" alt="Repo 4" class="w-full h-40 object-cover rounded mb-2">
-          <h3 class="font-bold mb-2">Repo 4</h3>
-          <p class="text-gray-600 text-sm">A sample repository project</p>
-        </div>
-        <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
-          <img src="src/image/repo5.jpg" alt="Repo 5" class="w-full h-40 object-cover rounded mb-2">
-          <h3 class="font-bold mb-2">Repo 5</h3>
-          <p class="text-gray-600 text-sm">A sample repository project</p>
+    <div class="m-8 bg-white rounded-lg p-6">
+      <div class="overflow-x-auto pb-4">
+        <div class="flex gap-4" style="min-width: min-content;">
+          <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
+            <img src="src/image/repo1_banner.png" alt="Apasi Banner Image"
+              class="w-full h-40 object-cover rounded mb-2 cursor-pointer hover:opacity-80"
+              onclick="openImagePreview(this.src)">
+            <h3 class="font-bold mb-2">Apasi Apps</h3>
+            <p class="text-gray-600 text-sm">Aplikasi Absensi untuk merekam tanda kehadiran.</p>
+          </div>
+          <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
+            <img src="src/image/repo2_banner.png" alt="Warepack Banner Image"
+              class="w-full h-40 object-cover rounded mb-2 cursor-pointer hover:opacity-80"
+              onclick="openImagePreview(this.src)">
+            <h3 class="font-bold mb-2">WarePack</h3>
+            <p class="text-gray-600 text-sm">Aplikasi untuk pencatatan realisasi packing barang di gudang.</p>
+          </div>
+          <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
+            <img src="src/image/repo3_banner.png" alt="WHop Banner Image"
+              class="w-full h-40 object-cover rounded mb-2 cursor-pointer hover:opacity-80"
+              onclick="openImagePreview(this.src)">
+            <h3 class="font-bold mb-2">WHop</h3>
+            <p class="text-gray-600 text-sm">Aplikasi untuk pelaksanaan stockopname pada gudang.</p>
+          </div>
+          <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
+            <img src="src/image/repo4_banner.png" alt="Pickastock Banner Image"
+              class="w-full h-40 object-cover rounded mb-2 cursor-pointer hover:opacity-80"
+              onclick="openImagePreview(this.src)">
+            <h3 class="font-bold mb-2">Pickastock</h3>
+            <p class="text-gray-600 text-sm">Aplikasi untuk realisasi pengambilan stock di gudang.</p>
+          </div>
+          <div class="bg-gray-100 rounded-lg p-4 flex-shrink-0 overflow-hidden" style="width: 250px;">
+            <img src="src/image/repo5_banner.png" alt="Pop App"
+              class="w-full h-40 object-cover rounded mb-2 cursor-pointer hover:opacity-80"
+              onclick="openImagePreview(this.src)">
+            <h3 class="font-bold mb-2">PoP App</h3>
+            <p class="text-gray-600 text-sm">Aplikasi pencatatan realisasi pengambilan barang kiriman.</p>
+          </div>
         </div>
       </div>
+      <button class="mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 hidden">
+        Show All Repositories
+      </button>
     </div>
 
-    <button class="mt-6 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
-      Show All Repositories
-    </button>
   </section>
-  <section id="message" class="m-8 px-6 py-12 border-b relative overflow-hidden" style="min-height: 400px;">
-    <h2 class="text-2xl font-bold mb-8">Message Us</h2>
+  <section id="message" class="m-8 px-6 py-12 relative overflow-hidden" style="min-height: 400px;">
+    <h2 class="text-2xl font-bold mb-8 text-white">Message Us</h2>
     <div class="flex gap-8">
       <!-- Form -->
       <div class="flex-1">
         <form id="messageForm">
           <div class="mb-4">
-            <label class="block text-sm font-medium mb-1">Nama</label>
-            <input type="text" id="nama" placeholder="Nama" class="w-full border border-gray-300 rounded px-3 py-2">
+            <label class="block text-sm font-medium mb-1 text-white">Nama</label>
+            <input type="text" id="nama" placeholder="Nama" class="w-full border border-gray-300 rounded px-3 py-2"
+              required>
           </div>
           <div class="mb-4">
-            <label class="block text-sm font-medium mb-1">Tanggal Lahir</label>
-            <input type="date" id="tanggal_lahir" class="w-full border border-gray-300 rounded px-3 py-2">
+            <label class="block text-sm font-medium mb-1 text-white">Tanggal Lahir</label>
+            <input type="date" id="tanggal_lahir" class="w-full border border-gray-300 rounded px-3 py-2" required>
           </div>
           <div class="mb-4">
-            <label class="block text-sm font-medium mb-1">Jenis Kelamin</label>
-            <div class="flex gap-4">
+            <label class="block text-sm font-medium mb-1 text-white">Jenis Kelamin</label>
+            <div class="flex gap-4 bg-white rounded-lg p-2 border border-gray-300">
               <label class="flex items-center">
                 <input type="radio" name="jenis_kelamin" value="Laki-Laki" class="mr-2">
                 Laki-Laki
@@ -98,9 +116,9 @@
             </div>
           </div>
           <div class="mb-4">
-            <label class="block text-sm font-medium mb-1">Pesan</label>
-            <textarea id="pesan" placeholder="Pesan" rows="4"
-              class="w-full border border-gray-300 rounded px-3 py-2"></textarea>
+            <label class="block text-sm font-medium mb-1 text-white">Pesan</label>
+            <textarea id="pesan" placeholder="Pesan" rows="4" class="w-full border border-gray-300 rounded px-3 py-2"
+              required></textarea>
           </div>
           <button type="submit" class="w-full bg-gray-200 hover:bg-gray-300 py-2 rounded">Submit</button>
         </form>
@@ -108,7 +126,7 @@
 
       <!-- Display Info -->
       <div class="flex-1">
-        <div id="chatContainer" class="border border-gray-300 rounded p-6 h-full overflow-y-auto"
+        <div id="chatContainer" class="border bg-white border-gray-300 rounded p-6 h-full overflow-y-auto"
           style="max-height: 400px;">
         </div>
       </div>
