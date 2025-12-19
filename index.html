@@ -132,41 +132,6 @@
           style="max-height: 400px;">
         </div>
       </div>
-
-      <script>
-        document.getElementById('messageForm').addEventListener('submit', function (e) {
-          e.preventDefault();
-
-          const nama = document.getElementById('nama').value.trim();
-          const tanggal_lahir = document.getElementById('tanggal_lahir').value;
-          const jenis_kelamin = document.querySelector('input[name="jenis_kelamin"]:checked');
-          const pesan = document.getElementById('pesan').value.trim();
-
-          if (!nama || !tanggal_lahir || !jenis_kelamin || !pesan) {
-            alert('Semua field harus diisi');
-            return;
-          }
-
-          const message = {
-            nama,
-            tanggal_lahir,
-            jenis_kelamin: jenis_kelamin.value,
-            pesan,
-            timestamp: new Date().toLocaleString('id-ID', {
-              timeZone: 'Asia/Jakarta'
-            })
-          };
-
-          let messages = JSON.parse(localStorage.getItem('messages')) || [];
-          messages.push(message);
-          localStorage.setItem('messages', JSON.stringify(messages));
-
-          this.reset();
-          displayMessages();
-        });
-
-        displayMessages();
-      </script>
     </div>
 
 

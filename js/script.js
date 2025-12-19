@@ -33,16 +33,17 @@ function createImagePreview() {
 function createNavigation() {
     return `
         <nav id="navbar" class="nav-container border-b px-6 py-4 flex items-center justify-between fixed top-0 left-0 right-0 z-50 transition-transform duration-300">
-            <div class="flex items-center">
-              <div class="w-10 h-10 rounded-full flex items-center justify-center">
-                <img src="src/image/icon.png" alt="Logo" />
-              </div>
-            </div>
+            <a href="index.html" class="flex items-center cursor-pointer hover:opacity-80 transition"
+                aria-label="Go to homepage">
+                <div class="w-10 h-10 flex items-center justify-center">
+                    <img src="src/image/icon.png" alt="Logo" />
+                </div>
+            </a>
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-0">
                 <button onclick="handleNavClick('hero')" class="nav-btn px-8 py-1 border-2 rounded-l-lg text-sm">Home</button>
-                <button onclick="navigateTo('profile.html')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 text-sm">Our Profile</button>
+                <button onclick="navigateTo('profile.html')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 text-sm">My Profile</button>
                 <button onclick="handleNavClick('portfolio')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 text-sm">Portfolio</button>
                 <button onclick="handleNavClick('message')" class="nav-btn px-8 py-1 border-t-2 border-b-2 border-r-2 rounded-r-lg text-sm">Message Us</button>
             </div>
@@ -83,7 +84,7 @@ function createNavigation() {
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                         </svg>
-                        Our Profile
+                        My Profile
                     </button>
                     <button onclick="handleNavClick('portfolio'); toggleMobileMenu()" class="mobile-menu-btn w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 flex items-center">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -134,6 +135,43 @@ function setActiveNav() {
     }
 }
 
+function initMessageForm() {
+    const messageForm = document.getElementById('messageForm');
+    if (!messageForm) return;
+    
+    messageForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const nama = document.getElementById('nama').value.trim();
+        const tanggal_lahir = document.getElementById('tanggal_lahir').value;
+        const jenis_kelamin = document.querySelector('input[name="jenis_kelamin"]:checked');
+        const pesan = document.getElementById('pesan').value.trim();
+
+        if (!nama || !tanggal_lahir || !jenis_kelamin || !pesan) {
+            alert('Semua field harus diisi');
+            return;
+        }
+
+        const message = {
+            nama,
+            tanggal_lahir,
+            jenis_kelamin: jenis_kelamin.value,
+            pesan,
+            timestamp: new Date().toLocaleString('id-ID', {
+                timeZone: 'Asia/Jakarta'
+            })
+        };
+
+        let messages = JSON.parse(localStorage.getItem('messages')) || [];
+        messages.push(message);
+        localStorage.setItem('messages', JSON.stringify(messages));
+
+        this.reset();
+        displayMessages();
+    });
+    
+    displayMessages();
+}
 
 function createFooter() {
     return `
@@ -236,41 +274,6 @@ function handleNavbarScroll() {
         navbar.style.transform = 'translateY(0)';
     }, 1000);
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    const hash = window.location.hash.substring(1);
-    if (hash && isIndexPage()) {
-        setTimeout(() => {
-            scrollToSection(hash);
-        }, 100);
-    }
-
-    const navContainer = document.getElementById('nav-container');
-    if (navContainer) {
-        navContainer.innerHTML = createNavigation();
-    }
-    
-    const portfolio = document.getElementById('img_preview');
-    if (portfolio) {
-        portfolio.innerHTML = createImagePreview();
-    }
-    
-    const footerContainer = document.getElementById('footer-container');
-    if (footerContainer) {
-        footerContainer.innerHTML = createFooter();
-    }
-
-    const visitorName = localStorage.getItem('visitorName');
-    const heroTitle = document.getElementById('welcome-speech');
-    if (heroTitle && visitorName) {
-        heroTitle.textContent = `Hello ${visitorName}, Welcome To My Website!`;
-    }
-    
-    window.addEventListener('scroll', function() {
-        setActiveNavOnScroll();
-        handleNavbarScroll();
-    });
-});
 
 function displayMessages() {
     const messages = JSON.parse(localStorage.getItem('messages')) || [];
@@ -386,3 +389,42 @@ function handleImagePan(event) {
     img.style.transformOrigin = `${x}% ${y}%`;
     img.style.transform = `scale(${currentZoom})`;
 }
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const hash = window.location.hash.substring(1);
+    if (hash && isIndexPage()) {
+        setTimeout(() => {
+            scrollToSection(hash);
+        }, 100);
+    }
+
+    const navContainer = document.getElementById('nav-container');
+    if (navContainer) {
+        navContainer.innerHTML = createNavigation();
+    }
+    
+    const portfolio = document.getElementById('img_preview');
+    if (portfolio) {
+        portfolio.innerHTML = createImagePreview();
+    }
+    
+    const footerContainer = document.getElementById('footer-container');
+    if (footerContainer) {
+        footerContainer.innerHTML = createFooter();
+    }
+
+    const visitorName = localStorage.getItem('visitorName');
+    const heroTitle = document.getElementById('welcome-speech');
+    if (heroTitle && visitorName) {
+        heroTitle.textContent = `Hello ${visitorName}, Welcome To My Website!`;
+    }
+
+    initMessageForm();
+    
+    window.addEventListener('scroll', function() {
+        setActiveNavOnScroll();
+        handleNavbarScroll();
+    });
+});
