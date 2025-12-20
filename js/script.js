@@ -156,7 +156,10 @@ function initMessageForm() {
         const jenis_kelamin = document.querySelector('input[name="jenis_kelamin"]:checked');
         const pesan = document.getElementById('pesan').value.trim();
 
-        if (!nama || !tanggal_lahir || !jenis_kelamin || !pesan) {
+        if (!jenis_kelamin) {
+            alert('Harap pilih gender.');
+            return false;
+        } if (!nama || !tanggal_lahir || !jenis_kelamin || !pesan) {
             alert('Semua field harus diisi');
             return false;
         }
@@ -470,6 +473,14 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             scrollToSection(hash);
         }, 100);
+    }
+
+    const birthDateInput = document.getElementById('tanggal_lahir');
+    if (birthDateInput) {
+        // Set max date to 5 years ago
+        const today = new Date();
+        const fiveYearsAgo = new Date(today.getFullYear() - 5, today.getMonth(), today.getDate());
+        birthDateInput.max = fiveYearsAgo.toISOString().split('T')[0];
     }
 
     const navContainer = document.getElementById('nav-container');
