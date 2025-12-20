@@ -142,10 +142,14 @@ function setActiveNav() {
 
 function initMessageForm() {
     const messageForm = document.getElementById('messageForm');
-    if (!messageForm) return;
+    if (!messageForm) {
+        console.log('Message form not found');
+        return;
+    }
     
     messageForm.addEventListener('submit', function (e) {
         e.preventDefault();
+        e.stopPropagation(); 
 
         const nama = document.getElementById('nama').value.trim();
         const tanggal_lahir = document.getElementById('tanggal_lahir').value;
@@ -154,7 +158,7 @@ function initMessageForm() {
 
         if (!nama || !tanggal_lahir || !jenis_kelamin || !pesan) {
             alert('Semua field harus diisi');
-            return;
+            return false;
         }
 
         const message = {
@@ -173,6 +177,8 @@ function initMessageForm() {
 
         this.reset();
         displayMessages();
+        
+        return false;
     });
     
     displayMessages();
@@ -488,28 +494,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     const slides = document.querySelectorAll(".slide");
+    if (slides.length) {
+        let currentSlide = 0;
 
-  // Exit if slider doesn't exist on this page
-  if (!slides.length) return;
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle("hidden", i !== index);
+            });
+        }
 
-  let currentSlide = 0;
+        // Expose globally for inline onclick
+        window.nextSlide = function () {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        };
 
-  function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle("hidden", i !== index);
-    });
-  }
-
-  // Expose globally for inline onclick
-  window.nextSlide = function () {
-    currentSlide = (currentSlide + 1) % slides.length;
-    showSlide(currentSlide);
-  };
-
-  window.prevSlide = function () {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    showSlide(currentSlide);
-  };
+        window.prevSlide = function () {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        };
+    }
 
     initMessageForm();
     
